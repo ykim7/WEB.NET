@@ -1,0 +1,94 @@
+﻿@model YJK2237A3.Models.TrackAddFormViewModel
+
+@{
+    ViewBag.Title = "AddNew";
+}
+
+<h2>Add new track</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h5>Complete the form, and click the Create button</h5>
+
+
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+   
+<dl class="row">
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;">Name</dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", autofocus = true } })
+            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+        </div>
+    </dd>
+
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;">Composer</dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Composer, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Composer, "", new { @class = "text-danger" })
+        </div>
+    </dd>
+
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;">Length(ms)</dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Milliseconds, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Milliseconds, "", new { @class = "text-danger" })
+        </div>
+    </dd>
+
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;">Unit price</dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+        </div>
+    </dd>
+
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;">Album</dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.SelectedAlbumId,
+                          Model.AlbumSelectList,
+                          new { @class = "form-control", size = "10" })
+            @Html.ValidationMessageFor(model => model.SelectedAlbumId, "", new { @class = "text-danger" })
+        </div>
+    </dd>
+
+
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;">MediaType</dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <div class="col-md-10">
+            @foreach (var mediaType in Model.MediaTypeSelectList)
+            {
+                <label class="radio-inline">
+                    @Html.RadioButtonFor(model => model.SelectedMediaTypeId, mediaType.Value, Model.SelectedMediaTypeId.ToString() == mediaType.Value) @mediaType.Text
+                </label>
+            }
+            @Html.ValidationMessageFor(model => model.SelectedMediaTypeId, "", new { @class = "text-danger" })
+        </div>
+    </dd>
+    <dt class="col-sm-2" style="text-align: right; margin: 10px;"></dt>
+    <dd class="col-sm-9" style="margin:10px;">
+        <input type="submit" value="Create" class="btn btn-default" style="border: 1px solid #ccc;" />
+    </dd>
+
+</dl>
+
+
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

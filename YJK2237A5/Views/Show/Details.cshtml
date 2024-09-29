@@ -1,0 +1,95 @@
+﻿@model YJK2237A5.Models.ShowWithDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd class="col-sm-9">
+            <img src="@Model.ImageUrl" alt="Image" style="max-width:150px; max-height:150px;" />
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Coordinator)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Coordinator)
+        </dd>
+    </dl>
+    <hr />
+    <dl class="row">
+
+
+        <dt class="col-sm-2 text-end">
+            Cast<br />
+            <span class="badge bg-secondary ">@Model.Actors.Count() actors</span>
+        </dt>
+
+        <dd class="col-sm-9">
+            @foreach (var actor in Model.Actors)
+            {
+                <p style="margin: 0;">
+                    @(Html.DisplayFor(model => actor.Name))
+                </p>
+            }
+        </dd>
+    </dl>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 text-end">
+            Episodes<br/>
+            <span class="badge bg-secondary ">@Model.Episodes.Count() episodes</span>
+        </dt>
+
+        <dd class="col-sm-9">
+            @foreach (var episode in Model.Episodes)
+            {
+                <p style="margin: 0;">
+                    @(Html.DisplayFor(model => episode.Name))
+                </p>
+            }
+        </dd>
+    </dl>
+</div>
+<p>
+    @if (User.IsInRole("Clerk"))
+    {
+        @Html.ActionLink("Create New", "EpisodeAdd", "Episode", new { Id = Model.Id }, null)
+        <span> | </span>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

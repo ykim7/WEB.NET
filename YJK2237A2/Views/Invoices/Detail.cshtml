@@ -1,0 +1,79 @@
+﻿@model YJK2237A2.Models.InvoiceWithDetailViewModel
+
+@{
+    // Razor code expression block for preparing concatenated strings
+    var customerInfo = $"{Model.CustomerId}<br>{Model.CustomerFirstName} {Model.CustomerLastName}<br/> {Model.CustomerState}, {Model.CustomerCountry}";
+    var billingAddress = $"{Model.BillingAddress} <br/>{Model.BillingCity}, { Model.BillingState}<br />{ Model.BillingCountry}, { Model.BillingPostalCode} ";
+    var salesRep = $"{Model.CustomerEmployeeFirstName} {Model.CustomerEmployeeLastName}";
+}
+
+<h2>Details for Invoice #@Model.InvoiceId</h2>
+
+<hr />
+
+<!-- Customer information grouped together -->
+<dl class="row">
+    <dt class="col-sm-2" style="text-align: right;">Customer Info</dt>
+    <dd class="col-sm-9">@Html.Raw(customerInfo)</dd>
+
+    <dt class="col-sm-2" style="text-align: right;">Billing Address</dt>
+    <dd class="col-sm-9">@Html.Raw(billingAddress)</dd>
+</dl>
+
+<hr />
+
+
+<dl class="row">
+    <dt class="col-sm-2" style="text-align: right; margin: 0;">Name</dt>
+    <dd class="col-sm-9" style="margin:0;">@salesRep</dd>
+
+    <dt class="col-sm-2" style="text-align: right; margin: 0;">Date</dt>
+    <dd class="col-sm-9" style="margin:0;">@Model.InvoiceDate.ToString("MMM d, yyyy")</dd>
+
+    <dt class="col-sm-2" style="text-align: right; margin: 0;">Total</dt>
+    <dd class="col-sm-9" style="margin:0;">@Model.Total.ToString("C")</dd>
+</dl>
+
+<h4>Line items</h4>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Line&nbsp;ID</th>
+            <th style="text-align: center;">Track</th>
+            <th>Unit&nbsp;Price</th>
+            <th>Quantity</th>
+            <th>Line&nbsp;Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.InvoiceLines)
+        {
+            <tr>
+                <td>@Html.DisplayFor(model => line.InvoiceLineId)</td>
+                <td>
+                    <dl class="row">
+                        <dt class="col-sm-3" style="text-align: right; margin: 0;">Name</dt>
+                        <dd class="col-sm-9" style="margin:0;">@Html.DisplayFor(model => line.TrackName)</dd>
+                        <dt class="col-sm-3" style="text-align: right; margin: 0;">Album:</dt>
+                        <dd class="col-sm-9" style="margin:0;">@Html.DisplayFor(model => line.AlbumTitle)</dd>
+                        <dt class="col-sm-3" style="text-align: right; margin: 0;">Artist:</dt>
+                        <dd class="col-sm-9" style="margin:0;">@Html.DisplayFor(model => line.ArtistName)</dd>
+                        <dt class="col-sm-3" style="text-align: right; margin: 0;">Composer:</dt>
+                        <dd class="col-sm-9" style="margin:0;">@Html.DisplayFor(model => line.Composer)</dd>
+                        <dt class="col-sm-3" style="text-align: right; margin: 0;">Genre:</dt>
+                        <dd class="col-sm-9" style="margin: 0;">@Html.DisplayFor(model => line.GenreName)</dd>
+                        <dt class="col-sm-3" style="text-align: right; margin: 0;">Media Type:</dt>
+                        <dd class="col-sm-9" style="margin: 0;">@Html.DisplayFor(model => line.MediaTypeName)</dd>
+
+
+                    </dl>
+                </td>
+                <td>@Html.DisplayFor(model => line.UnitPrice)</td>
+                <td>@Html.DisplayFor(model => line.Quantity)</td>
+                <td>@Html.DisplayFor(model => line.LinePrice)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a href="@Url.Action("Index", "Invoices")">Back to List</a>

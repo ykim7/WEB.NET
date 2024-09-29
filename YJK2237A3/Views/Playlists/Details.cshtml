@@ -1,0 +1,41 @@
+﻿@model YJK2237A3.Models.PlaylistBaseViewModel
+
+
+<h2>Playlist details <span class="badge bg-info text-dark px-3" style="border-radius: 0;">@Html.DisplayFor(model => model.Name)</span></h2>
+
+<div>
+    <hr />
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <hr />
+    <dl class="dl-horizontal">
+        <dl class="row">
+            <dt class="col-sm-2" style="text-align: right; margin: 5px 0 5px 0;">Playlist Name</dt>
+            <dd class="col-sm-9" style="margin: 5px 0 5px 0;">@Model.Name</dd>
+            <dt class="col-sm-2" style="text-align: right; margin: 5px 0 0 0;">Tracks on the Playlist</dt>
+            <dd class="col-sm-9" style="margin: 5px 0 0 0;">
+                <span class="badge bg-secondary rounded-pill text-light">
+                    @(Model.Tracks != null ? Model.Tracks.Count.ToString() : "0")
+                </span>
+            </dd>
+            <dt class="col-sm-2" style="text-align: right; margin: 0;"></dt>
+            <dd class="col-sm-9" style="margin: 0;">
+                @foreach (var track in Model.Tracks)
+                {
+                    <p style="margin: 0;">
+                        @(Html.DisplayFor(model => track.Name))
+                    </p>
+                }
+            </dd>
+
+        </dl>
+
+    </dl>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.PlaylistId }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
+

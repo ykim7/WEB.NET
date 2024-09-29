@@ -1,0 +1,100 @@
+﻿@model YJK2237A5.Models.EpisodeWithDetailViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+
+        <dt class="col-sm-2 text-end">
+            Show Name
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Show.Name)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.SeasonNumber)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.SeasonNumber)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.EpisodeNumber)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.EpisodeNumber)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Genre)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Genre)
+        </dd>
+
+        <dt class="col-sm-2 text-end" ">
+            @Html.DisplayNameFor(model => model.AirDate)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.AirDate)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd class="col-sm-9">
+            <img src="@Model.ImageUrl" alt="Image" style="max-width:150px; max-height:150px;" />
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Clerk)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Clerk)
+        </dd>
+
+
+
+    </dl>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Premise))
+    {
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2 text-end">
+                @Html.DisplayNameFor(model => model.Premise)<br />
+            </dt>
+
+            <dd class="col-sm-9 ">
+                <p class="card text-bg-light">
+                    @Html.Raw(Model.Premise)
+                </p>
+            </dd>
+
+        </dl>
+    }
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

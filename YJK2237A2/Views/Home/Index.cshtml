@@ -1,0 +1,25 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<main>
+    <section class="row" aria-labelledby="appTitle">
+        <h1 id="appTitle">Assignment 2 - Yujin Kim</h1>
+        <p class="lead">This website is created for Tracks and Invoices</p>
+    </section>
+
+    <div class="row mt-5">
+        <section class="col-md-6" aria-labelledby="whatILearned">
+            <h2 id="whatILearned">I learned ...</h2>
+            <p>
+                I learned that I can use a single view to display data in various sorting orders by utilizing the Manager.cs file to create and execute different sorting methods in the controller. Additionally, I discovered that I can efficiently organize and display only the data I need by transforming various data relationships into view models using AutoMapper.
+
+                Furthermore, while working on creating an InvoiceLine, I found it beneficial to list another data model within it, making it easier to view and manage data relationships.
+            </p>
+        </section>
+        <section class="col-md-6" aria-labelledby="whatIStruggledWith">
+            <h2 id="whatIStruggledWith">I struggled with ...</h2>
+            <p>One of the challenges I faced was dealing with model names that were quite similar, and the variable names within the data models could be easily confused. This made it difficult to pinpoint the source of issues when they arose. Although errors did not occur, diagnosing the problem area when data was not loading required a significant amount of time and effort.</p>
+        </section>
+    </div>
+</main>

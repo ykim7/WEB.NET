@@ -1,0 +1,101 @@
+﻿@model YJK2237A5.Models.ActorWithDetailViewModel
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.AlternateName)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.AlternateName)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Height)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Height)
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.ImageUrl)
+        </dt>
+
+        <dd class="col-sm-9">
+            <img src="@Model.ImageUrl" alt="Image" style="max-width:150px; max-height:150px;" />
+        </dd>
+
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Executive)
+        </dt>
+
+        <dd class="col-sm-9">
+            @Html.DisplayFor(model => model.Executive)
+        </dd>
+    </dl>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2 text-end">
+            @Html.DisplayNameFor(model => model.Shows)<br />
+            <span class="badge bg-secondary ">@Model.Shows.Count() shows</span>
+        </dt>
+
+        <dd class="col-sm-9">
+            @foreach (var show in Model.Shows)
+            {
+                <p style="margin: 0;">
+                    @(Html.DisplayFor(model => show.Name))
+                </p>
+            }
+        </dd>
+    </dl>
+    @if (!string.IsNullOrWhiteSpace(Model.Biography))
+    {
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2 text-end">
+                @Html.DisplayNameFor(model => model.Biography)<br />
+            </dt>
+
+            <dd class="col-sm-9 ">
+                <p class="card text-bg-light">
+                    @Html.Raw(Model.Biography)
+                </p>
+            </dd>
+
+        </dl>
+    }
+</div>
+<p>
+    @if (User.IsInRole("Coordinator"))
+    {
+        @Html.ActionLink("Create New", "ShowAdd", "Show", new { preselectedActorId = Model.Id }, null)
+        <span> | </span>
+    }
+
+    @Html.ActionLink("Back to List", "Index")
+</p>

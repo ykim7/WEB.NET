@@ -1,0 +1,33 @@
+﻿@model YJK2237A3.Models.TrackWithDetailViewModel
+
+
+<h2>Track details</h2>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Track Name</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.Name</dd>
+
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Composer</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.Composer</dd>
+
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Length(ms)</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.Milliseconds</dd>
+
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Unit price</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.UnitPrice</dd>
+
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Album title</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.AlbumTitle</dd>
+
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Artist name</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.ArtistName</dd>
+
+        <dt class="col-sm-2" style="text-align: right; margin: 0;">Media Type</dt>
+        <dd class="col-sm-9" style="margin:0;">@Model.MediaType.Name</dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

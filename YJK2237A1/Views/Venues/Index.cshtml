@@ -1,0 +1,55 @@
+﻿@model IEnumerable<YJK2237A1.Models.VenueBaseViewModel>
+
+@{
+    ViewBag.Title = "Venue List";
+}
+
+<h2>Venue List</h2>
+
+<p>
+    <a href="@Url.Action("Create", "Venues")">Create New</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Address</th>
+            <th>Phone / Fax</th>
+            <th>Email / Website</th>
+            <th>Date Opened</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>@item.Company</td>
+            <td>
+                @item.Address <br />
+                @item.City @item.State <br />
+                @item.Country @item.PostalCode
+            </td>
+            <td>
+                @item.Phone<br />
+                @item.Fax
+            </td>
+            <td>
+                <a href="mailto:@item.Email">@item.Email</a> <br />
+                <a href="@item.Website">@item.Website</a>
+            </td>
+            <td>
+                @(item.OpenDate.HasValue ? item.OpenDate.Value.ToString("yyyy-MM-dd") : "")<br>
+                @item.YearsOld
+            </td>
+            <td>
+                <a href="@Url.Action("Edit", "Venues", new { id = item.VenueId })">Edit</a> |
+                <a href="@Url.Action("Details", "Venues", new { id = item.VenueId })">Details</a> |
+                <a href="@Url.Action("Delete", "Venues", new { id = item.VenueId })">Delete</a>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

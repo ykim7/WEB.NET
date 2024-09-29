@@ -1,0 +1,36 @@
+﻿@model IEnumerable<YJK2237A3.Models.PlaylistBaseViewModel>
+
+
+
+<h2>Playlists</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            Playlist Track Count
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            <span class="badge bg-secondary rounded-pill text-light">
+                @(item.Tracks != null ? item.Tracks.Count.ToString() : "0")
+            </span>
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PlaylistId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PlaylistId })
+        </td>
+    </tr>
+}
+
+</table>
